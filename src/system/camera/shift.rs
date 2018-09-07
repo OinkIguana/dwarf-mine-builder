@@ -17,9 +17,9 @@ system! {
                     KeyboardEvent::Press(Key::Q) => visible_range.shift(Point3D::y(-1)),
                     KeyboardEvent::Press(Key::W) => visible_range.shift(Point3D::z(-1)),
                     KeyboardEvent::Press(Key::E) => visible_range.shift(Point3D::x(1)),
-                    KeyboardEvent::Press(Key::A) => visible_range.shift(Point3D::y(1)),
+                    KeyboardEvent::Press(Key::D) => visible_range.shift(Point3D::y(1)),
                     KeyboardEvent::Press(Key::S) => visible_range.shift(Point3D::z(1)),
-                    KeyboardEvent::Press(Key::D) => visible_range.shift(Point3D::x(-1)),
+                    KeyboardEvent::Press(Key::A) => visible_range.shift(Point3D::x(-1)),
                     _ => {},
                 }
             }
