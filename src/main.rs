@@ -31,7 +31,8 @@ fn main() -> game_engine::Result<()> {
             builder
                 .with(ShiftCamera::default(), "ShiftCamera", &[])
                 .with(CameraTarget::default(), "CameraTarget", &["ShiftCamera"])
-                .with(MaintainDwarfDrawable::default(), "MaintainDwarfDrawable", &[])
+                .with(UpdateFloorHeights::default(), "UpdateFloorHeights", &["ShiftCamera"])
+                .with(MaintainDwarfDrawable::default(), "MaintainDwarfDrawable", &["UpdateFloorHeights"])
                 .with(MaintainCubeDrawable::default(), "MaintainCubeDrawable", &[])
                 .build()
         )

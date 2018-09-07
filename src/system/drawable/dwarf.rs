@@ -20,7 +20,8 @@ system! {
             for (grid_position, cube_position, dwarf_info, drawable) in (&grid_position, &cube_position, &dwarf_info, &mut drawable).join() {
                 if let Some(drawable) = drawable.as_any_mut().downcast_mut::<DwarfDrawable>() {
                     drawable.dwarf = dwarf_info.clone().into();
-                    drawable.position = ISO_GRID.position_in_cube(grid_position.into(), cube_position.into());
+                    drawable.position = ISO_GRID.position_in_cube(grid_position.into(), cube_position.into())
+                        + visible_range.floor_offset(grid_position.into(), cube_position.into());
                     drawable.depth = visible_range.depth(grid_position.into()) + visible_range.inner_depth(cube_position.into());
                     drawable.visible = visible_range.contains(grid_position.into());
                 }

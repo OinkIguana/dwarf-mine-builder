@@ -15,6 +15,6 @@ scene! {
                 }
             }
         }
-        builder.add_entity(Dwarf(Point3D { x: 0, y: 15, z: 0 }, Point { x: 0, y: 16 }, DwarfDescriptor::new(String::from("Eric"))));
+        builder.add_entity(Dwarf(Point3D { x: 0, y: 15, z: 0 }, Point { x: 0, y: 15 }, DwarfDescriptor::new(String::from("Eric"))));
     }
 }

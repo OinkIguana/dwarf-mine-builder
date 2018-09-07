@@ -1,4 +1,5 @@
 use game_engine::prelude::*;
+use super::FloorMap;
 
 #[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Debug)]
 pub enum CubeKind {
@@ -9,6 +10,12 @@ impl CubeKind {
     pub fn sprite(&self) -> Option<&'static Sprite> {
         match self {
             CubeKind::Empty => Some(&crate::sprite::CUBE),
+        }
+    }
+
+    pub fn floor_map(&self) -> FloorMap {
+        match self {
+            _ => FloorMap::default()
         }
     }
 }
@@ -48,5 +55,9 @@ impl CubeDescriptor {
 
     pub fn frame(&self) -> usize {
         self.subtype
+    }
+
+    pub fn floor_map(&self) -> FloorMap {
+        self.kind.floor_map()
     }
 }
