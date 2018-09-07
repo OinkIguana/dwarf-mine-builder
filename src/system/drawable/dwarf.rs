@@ -22,6 +22,7 @@ system! {
                     drawable.dwarf = dwarf_info.clone().into();
                     drawable.position = ISO_GRID.position_in_cube(grid_position.into(), cube_position.into());
                     drawable.depth = visible_range.depth(grid_position.into()) + visible_range.inner_depth(cube_position.into());
+                    drawable.visible = visible_range.contains(grid_position.into());
                 }
             }
         }

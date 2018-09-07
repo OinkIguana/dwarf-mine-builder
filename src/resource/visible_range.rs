@@ -35,6 +35,16 @@ impl VisibleRange {
         let front = position.distance_from(&Point { x: 0, y: 16 });
         front as i32
     }
+
+    /// Checks if a cube is within the visible range
+    pub fn contains(&self, cube: Point3D) -> bool {
+        cube.x >= self.0.origin.x
+        && cube.y >= self.0.origin.y
+        && cube.z >= self.0.origin.z
+        && cube.x <= self.0.origin.x + self.0.size.width as i32
+        && cube.y <= self.0.origin.y + self.0.size.height as i32
+        && cube.z <= self.0.origin.z + self.0.size.depth as i32
+    }
 }
 
 impl Default for VisibleRange {

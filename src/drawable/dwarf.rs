@@ -7,6 +7,7 @@ pub struct DwarfDrawable {
     pub dwarf: DwarfDescriptor,
     pub position: Point,
     pub depth: i32,
+    pub visible: bool,
 }
 
 impl DwarfDrawable {
@@ -15,6 +16,7 @@ impl DwarfDrawable {
             dwarf,
             position: Point::default(),
             depth: 0,
+            visible: true,
         })
     }
 }
@@ -25,8 +27,10 @@ impl Drawable for DwarfDrawable {
     }
 
     fn render(&self, canvas: &mut dyn Canvas) -> game_engine::Result<()> {
-        if let Some(sprite) = self.dwarf.sprite() {
-            canvas.draw_sprite(self.position, 0, sprite)?;
+        if self.visible {
+            if let Some(sprite) = self.dwarf.sprite() {
+                canvas.draw_sprite(self.position, 0, sprite)?;
+            }
         }
         Ok(())
     }

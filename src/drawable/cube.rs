@@ -7,6 +7,7 @@ pub struct CubeDrawable {
     pub cube: CubeDescriptor,
     pub position: Point,
     pub depth: i32,
+    pub visible: bool,
 }
 
 impl CubeDrawable {
@@ -15,6 +16,7 @@ impl CubeDrawable {
             cube,
             position: Point::default(),
             depth: 0,
+            visible: true,
         })
     }
 }
@@ -25,8 +27,10 @@ impl Drawable for CubeDrawable {
     }
 
     fn render(&self, canvas: &mut dyn Canvas) -> game_engine::Result<()> {
-        if let Some(sprite) = self.cube.sprite() {
-            canvas.draw_sprite(self.position, self.cube.frame(), sprite)?;
+        if self.visible {
+            if let Some(sprite) = self.cube.sprite() {
+                canvas.draw_sprite(self.position, self.cube.frame(), sprite)?;
+            }
         }
         Ok(())
     }

@@ -21,6 +21,7 @@ system! {
                     drawable.cube = cube_info.into();
                     drawable.position = ISO_GRID.bounds_top_left(grid_position.into());
                     drawable.depth = visible_range.depth(grid_position.into());
+                    drawable.visible = visible_range.contains(grid_position.into());
                 }
             }
         }
