@@ -1,2 +1,7 @@
 mod cube;
-pub use self::cube::CubeDrawable;
+mod dwarf;
+
+pub use self::{
+    cube::CubeDrawable,
+    dwarf::DwarfDrawable,
+};

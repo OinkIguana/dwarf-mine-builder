@@ -1,22 +1,16 @@
 use specs_derive::Component;
 use game_engine::prelude::*;
 
-/// The position of an entity on the floor of a cube
+/// The position in the target cube this entity should be moving towards
 #[derive(Component, Copy, Clone, Eq, PartialEq, Default, Debug)]
-pub struct CubePosition {
+pub struct TargetPosition {
     point: Point,
 }
 
-impl CubePosition {
+impl TargetPosition {
     pub fn new(point: Point) -> Self {
-        CubePosition {
+        TargetPosition {
             point,
         }
-    }
-}
-
-impl Into<Point> for &CubePosition {
-    fn into(self) -> Point {
-        self.point
     }
 }

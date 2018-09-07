@@ -1,6 +1,6 @@
 use game_engine::{scene, prelude::*};
 use crate::model::*;
-use crate::entity::Cube;
+use crate::entity::*;
 
 scene! {
     pub NEW_GAME {
@@ -15,5 +15,6 @@ scene! {
                 }
             }
         }
+        builder.add_entity(Dwarf(Point3D { x: 0, y: 15, z: 0 }, Point { x: 0, y: 15 }, DwarfDescriptor::new(String::from("Eric"))));
     }
 }
