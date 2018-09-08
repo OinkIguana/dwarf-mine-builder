@@ -1,3 +1,0 @@
-image = "CUBE"
-dimensions = { width = 64, height = 64 }
-frames = [[0, 0, 64, 64]]

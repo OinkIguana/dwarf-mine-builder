@@ -11,10 +11,11 @@ scene! {
             for y in 0..16 {
                 for z in 0..16 {
                     let point = Point3D { x, y, z };
-                    builder.add_entity(Cube(point, CubeDescriptor::default()));
+                    let kind = if z == 0 { CubeKind::GrassyDirt } else { CubeKind::Dirt };
+                    builder.add_entity(Cube(point, CubeDescriptor::new(kind)));
                 }
             }
         }
-        builder.add_entity(Dwarf(Point3D { x: 0, y: 15, z: 0 }, Point { x: 0, y: 15 }, DwarfDescriptor::new(String::from("Eric"))));
+        builder.add_entity(Dwarf(Point3D { x: 0, y: 15, z: -1 }, Point { x: 16, y: 0 }, DwarfDescriptor::new(String::from("Eric"))));
     }
 }

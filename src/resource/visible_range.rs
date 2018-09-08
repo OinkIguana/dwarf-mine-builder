@@ -78,7 +78,7 @@ impl Default for VisibleRange {
                 origin: Point3D {
                     x: 0,
                     y: 0,
-                    z: 0,
+                    z: -3,
                 },
                 size: Size3D {
                     width: 16,
