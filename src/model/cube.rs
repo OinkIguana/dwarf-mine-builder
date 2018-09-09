@@ -1,5 +1,5 @@
 use game_engine::prelude::*;
-use super::FloorMap;
+use super::{FloorMap, TerrainShape};
 use crate::sprite;
 
 #[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Debug)]
@@ -37,6 +37,7 @@ impl Default for CubeKind {
 #[derive(Copy, Clone, Eq, PartialEq, Default, Debug)]
 pub struct CubeDescriptor {
     kind: CubeKind,
+    shape: TerrainShape,
     subtype: usize,
 }
 
@@ -44,6 +45,7 @@ impl CubeDescriptor {
     pub const fn new(kind: CubeKind) -> Self {
         CubeDescriptor {
             kind,
+            shape: TerrainShape::Solid,
             subtype: 0,
         }
     }

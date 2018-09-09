@@ -1,6 +1,6 @@
 use game_engine::{entity, prelude::*};
 use crate::drawable::DwarfDrawable;
-use crate::component::{GridPosition, CubePosition, DwarfInfo, TargetCube, TargetPosition, Task};
+use crate::component::{GridPosition, CubePosition, DwarfInfo, TargetCube, TargetPosition, Assignment};
 use crate::model::{Point3D, DwarfDescriptor};
 
 entity! {
@@ -10,7 +10,7 @@ entity! {
         CubePosition::new(position),
         TargetCube::default(),
         TargetPosition::default(),
-        Task::default(),
+        Assignment::default(),
         DwarfDrawable::boxed(dwarf),
     }
 }
