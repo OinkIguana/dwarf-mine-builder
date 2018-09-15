@@ -21,6 +21,7 @@ use self::system::*;
 fn main() -> game_engine::Result<()> {
     Game::new()
         .titled("Dwarf Mine Builder")
+        .sized(32 * 32, 768)
         .target_fps(60)
 
         .pipe(component::register)
@@ -32,8 +33,9 @@ fn main() -> game_engine::Result<()> {
                 .with(ShiftCamera::default(), "ShiftCamera", &[])
                 .with(CameraTarget::default(), "CameraTarget", &["ShiftCamera"])
                 .with(UpdateFloorHeights::default(), "UpdateFloorHeights", &["ShiftCamera"])
+                .with(CubeHover::default(), "CubeHover", &["ShiftCamera"])
                 .with(MaintainDwarfDrawable::default(), "MaintainDwarfDrawable", &["UpdateFloorHeights"])
-                .with(MaintainCubeDrawable::default(), "MaintainCubeDrawable", &[])
+                .with(MaintainCubeDrawable::default(), "MaintainCubeDrawable", &["CubeHover"])
                 .build()
         )
 

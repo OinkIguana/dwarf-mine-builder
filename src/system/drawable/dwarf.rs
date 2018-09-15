@@ -1,6 +1,7 @@
 use game_engine::{system, prelude::*};
 use crate::drawable::DwarfDrawable;
 use crate::component::{DwarfInfo, GridPosition, CubePosition};
+use crate::model::Point3D;
 use crate::resource::VisibleRange;
 use crate::constant::ISO_GRID;
 
@@ -23,7 +24,8 @@ system! {
                     drawable.position = ISO_GRID.position_in_cube(grid_position.into(), cube_position.into())
                         + visible_range.floor_offset(grid_position.into(), cube_position.into());
                     drawable.depth = visible_range.depth(grid_position.into()) + visible_range.inner_depth(cube_position.into());
-                    drawable.visible = visible_range.contains(grid_position.into());
+                    drawable.visible = visible_range.contains(grid_position.into())
+                        || visible_range.contains(Point3D::from(grid_position.into()) + Point3D { x: 0, y: 0, z: 1 });
                 }
             }
         }

@@ -1,7 +1,7 @@
 use game_engine::{system, prelude::*};
 use crate::drawable::CubeDrawable;
 use crate::component::{CubeInfo, GridPosition};
-use crate::resource::VisibleRange;
+use crate::resource::{VisibleRange, HoveredCube};
 use crate::constant::ISO_GRID;
 
 #[derive(Default, Debug)]
@@ -12,6 +12,7 @@ system! {
         fn run(
             &mut self,
             visible_range: &Resource<VisibleRange>,
+            hovered_cube: &Resource<HoveredCube>,
             cube_info: &Component<CubeInfo>,
             grid_position: &Component<GridPosition>,
             drawable: &mut Component<Box<dyn Drawable>>,
@@ -22,6 +23,7 @@ system! {
                     drawable.position = ISO_GRID.bounds_top_left(grid_position.into());
                     drawable.depth = visible_range.depth(grid_position.into());
                     drawable.visible = visible_range.contains(grid_position.into());
+                    drawable.hovered = *hovered_cube == grid_position.into();
                 }
             }
         }

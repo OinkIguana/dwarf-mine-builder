@@ -8,6 +8,7 @@ pub struct CubeDrawable {
     pub position: Point,
     pub depth: i32,
     pub visible: bool,
+    pub hovered: bool,
 }
 
 impl CubeDrawable {
@@ -17,6 +18,7 @@ impl CubeDrawable {
             position: Point::default(),
             depth: 0,
             visible: true,
+            hovered: false,
         })
     }
 }

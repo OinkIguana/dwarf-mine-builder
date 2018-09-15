@@ -22,6 +22,10 @@ impl VisibleRange {
         self.area.origin
     }
 
+    pub fn center(&self) -> Point3D {
+        self.area.center()
+    }
+
     pub fn size(&self) -> Size3D {
         self.area.size
     }
@@ -50,12 +54,12 @@ impl VisibleRange {
 
     /// Checks if a cube is within the visible range
     pub fn contains(&self, cube: Point3D) -> bool {
-        cube.x >= self.area.origin.x
+           cube.x >= self.area.origin.x
         && cube.y >= self.area.origin.y
         && cube.z >= self.area.origin.z
-        && cube.x <= self.area.origin.x + self.area.size.width as i32
-        && cube.y <= self.area.origin.y + self.area.size.height as i32
-        && cube.z <= self.area.origin.z + self.area.size.depth as i32
+        && cube.x < self.area.origin.x + self.area.size.width as i32
+        && cube.y < self.area.origin.y + self.area.size.height as i32
+        && cube.z < self.area.origin.z + self.area.size.depth as i32
     }
 
     pub fn cube_index(&self, cube: Point3D) -> usize {
@@ -69,6 +73,23 @@ impl VisibleRange {
     pub fn update_floor_map(&mut self, floor_heights: Vec<FloorMap>) {
         self.floor_heights = floor_heights;
     }
+
+    /// Determines the outermost cube that is being rendered at the given position, assuming
+    /// `Point { x: 0, y: 0 }` corresponds to where `Point3D { x: 0, y: 0, z: 0 }`'s origin would
+    /// be positioned
+    pub fn target_cube(&self, _point: Point) -> Option<Point3D> {
+        // TODO: this doesn't work
+        let cube = Point3D {
+            x: 0,
+            y: 0,
+            z: 0,
+        };
+        if self.contains(cube) {
+            Some(cube)
+        } else {
+            None
+        }
+    }
 }
 
 impl Default for VisibleRange {
@@ -78,7 +99,7 @@ impl Default for VisibleRange {
                 origin: Point3D {
                     x: 0,
                     y: 0,
-                    z: -3,
+                    z: 0,
                 },
                 size: Size3D {
                     width: 16,

@@ -19,6 +19,14 @@ impl Tetra {
         self.size.is_cube()
     }
 
+    pub fn center(&self) -> Point3D {
+        self.origin + Point3D {
+            x: self.size.width as i32 / 2,
+            y: self.size.height as i32 / 2,
+            z: self.size.depth as i32 / 2,
+        }
+    }
+
     pub fn volume(&self) -> u32 {
         self.size.volume()
     }
