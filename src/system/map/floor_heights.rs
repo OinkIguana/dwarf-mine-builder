@@ -15,7 +15,7 @@ system! {
         ) {
             let mut floor_map = (&cube_info, &grid_position).join()
                 .filter(|(_, position)| visible_range.contains((*position).into()))
-                .map(|(info, position)| (visible_range.cube_index((*position).into()), info.floor_map()))
+                .map(|(info, position)| (visible_range.cube_index(position.into()), info.floor_map()))
                 .collect::<Vec<_>>();
             floor_map.sort_by(|(a, _), (b, _)| a.cmp(b));
             visible_range.update_floor_map(
