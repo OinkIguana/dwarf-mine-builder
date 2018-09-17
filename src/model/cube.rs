@@ -1,5 +1,5 @@
 use game_engine::prelude::*;
-use super::{FloorMap, TerrainShape};
+use super::{FloorMap, TerrainShape, CollisionMap};
 use crate::sprite;
 
 #[derive(Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Debug)]
@@ -23,7 +23,24 @@ impl CubeKind {
 
     pub fn floor_map(&self) -> FloorMap {
         match self {
-            _ => FloorMap::default()
+            CubeKind::Empty => FloorMap::default(),
+            _ => FloorMap::SOLID,
+        }
+    }
+
+    /// A map of tiles which cannot be walked on
+    pub fn collision_map(&self) -> CollisionMap {
+        match self {
+            CubeKind::Empty => CollisionMap::default(),
+            _ => CollisionMap::SOLID,
+        }
+    }
+
+    /// A map of tiles which can be walked on if the cube above has no floor
+    pub fn ceiling_map(&self) -> CollisionMap {
+        match self {
+            CubeKind::Empty => CollisionMap::default(),
+            _ => CollisionMap::SOLID,
         }
     }
 }
@@ -75,5 +92,15 @@ impl CubeDescriptor {
 
     pub fn floor_map(&self) -> FloorMap {
         self.kind.floor_map()
+    }
+
+    /// A map of tiles which cannot be walked on
+    pub fn collision_map(&self) -> CollisionMap {
+        self.kind.collision_map()
+    }
+
+    /// A map of tiles which can be walked on if the cube above has no floor
+    pub fn ceiling_map(&self) -> CollisionMap {
+        self.kind.ceiling_map()
     }
 }

@@ -1,12 +1,14 @@
 use game_engine::prelude::*;
 use std::fmt::{self, Formatter, Debug};
-use crate::constant::TILE_SIZE;
+use crate::constant::{TILE_SIZE, CUBE_SIZE};
 
 /// A height map of the floor of a cube.
 #[derive(Copy, Clone)]
 pub struct FloorMap([u8; (TILE_SIZE * TILE_SIZE) as usize]);
 
 impl FloorMap {
+    pub const SOLID: FloorMap = FloorMap([CUBE_SIZE.depth as u8; (TILE_SIZE * TILE_SIZE) as usize]);
+
     pub const fn new(map: [u8; (TILE_SIZE * TILE_SIZE) as usize]) -> Self {
         FloorMap(map)
     }

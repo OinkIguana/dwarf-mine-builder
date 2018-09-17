@@ -1,4 +1,5 @@
 pub mod building;
+pub mod collision_map;
 pub mod cube;
 pub mod dwarf;
 pub mod floor_map;
@@ -12,6 +13,7 @@ pub mod tetra;
 
 pub use self::{
     building::{BuildingDescriptor, BuildingKind},
+    collision_map::{CollisionMap},
     cube::{CubeDescriptor, CubeKind},
     dwarf::DwarfDescriptor,
     floor_map::FloorMap,
